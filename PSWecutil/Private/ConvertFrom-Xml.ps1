@@ -42,7 +42,7 @@ function ConvertFrom-Xml {
 
                 if ($object.HasChildNodes) {
                     $object.ChildNodes.ForEach({ 
-                        $hashTable.$name.($_.Name) = ConvertFrom-Xml -Xml $( $object.$($_.Name) ) 
+                        $hashTable.$name.$( $_.Name ) = ConvertFrom-Xml -Xml $object.$( $_.Name )
                     })
                 }
             }
