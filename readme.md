@@ -1,1 +1,1 @@
-# PowerShell wrapper for Wecutiil.exe
+# PowerShell wrapper for Wecutil.exe
