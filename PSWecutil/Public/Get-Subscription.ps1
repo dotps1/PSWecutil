@@ -1,3 +1,5 @@
+using module ..\PSWecutil.classes.psm1
+
 function Get-Subscription {
 
     [CmdletBinding()]
@@ -52,11 +54,11 @@ function Get-Subscription {
     }
 
     try {
-        $subscriptionsXmls = Invoke-Command -ComputerName $Name -ScriptBlock $scriptBlock -ArgumentList $SubscriptionId -Credential $Credential -ErrorAction Stop
+        $subscriptionXmls = Invoke-Command -ComputerName $Name -ScriptBlock $scriptBlock -ArgumentList $SubscriptionId -Credential $Credential -ErrorAction Stop
 
-        foreach ($subscriptionsXml in $subscriptionsXmls) {
-            if ($null -ne $subscriptionsXml) {
-                New-SubscriptionObject -SubscriptionXml $subscriptionsXml
+        foreach ($subscriptionXml in $subscriptionXmls) {
+            if ($null -ne $subscriptionXml) {
+                [Subscription]$subscriptionXml
             }
         }
 
