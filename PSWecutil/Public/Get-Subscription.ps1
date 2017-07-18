@@ -6,19 +6,19 @@ function Get-Subscription {
     [OutputType()]
 
     param (
-        [Parameter()]
-        [Alias(
-            "ComputerName"
-        )]
-        [String]
-        $Name = $env:COMPUTERNAME,
-
         [Parameter(
             ValueFromPipeline = $true,
             ValueFromPipelineByPropertyName = $true
         )]
         [String[]]
         $SubscriptionId = $null,
+
+        [Parameter()]
+        [Alias(
+            "ComputerName"
+        )]
+        [String]
+        $Name = $env:COMPUTERNAME,
 
         [Parameter()]
         [PSCredential]
@@ -47,24 +47,19 @@ function Get-Subscription {
                     Write-Output -InputObject $output
                 } else {
                     Write-Error "Subscription not found: '$arg'."
-                    Write-Output $null
+                    continue
                 }
             }
         }
     }
 
-    try {
-        $subscriptionXmls = Invoke-Command -ComputerName $Name -ScriptBlock $scriptBlock -ArgumentList $SubscriptionId -Credential $Credential -ErrorAction Stop
+    $subscriptions = Invoke-Command -ComputerName $Name -ScriptBlock $scriptBlock -ArgumentList $SubscriptionId -Credential $Credential
 
-        foreach ($subscriptionXml in $subscriptionXmls) {
-            if ($null -ne $subscriptionXml) {
-                [Subscription]$subscriptionXml
-            }
+    foreach ($subscription in $subscriptions) {
+        if ($null -ne $subscription) {
+            $output = [Subscription]$subscription
+
+            Write-Output -InputObject $output
         }
-
-    } catch { 
-        $PSCmdlet.ThrowTerminatingError(
-            $_
-        )
     }
 }

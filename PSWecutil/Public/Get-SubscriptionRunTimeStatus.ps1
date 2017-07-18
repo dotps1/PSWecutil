@@ -4,6 +4,18 @@ function Get-SubscriptionRunTimeStatus {
     [OutputType()]
 
     param (
+        [Parameter(
+            Mandatory = $true,
+            ValueFromPipeline = $true,
+            ValueFromPipelineByPropertyName = $true
+        )]
+        [String[]]
+        $SubscriptionId,
+
+        [Parameter()]
+        [String]
+        $EventSource,
+
         [Parameter()]
         [Alias(
             "ComputerName"
@@ -11,24 +23,32 @@ function Get-SubscriptionRunTimeStatus {
         [String]
         $Name = $env:COMPUTERNAME,
 
-        [Parameter(
-            Mandatory = $true,
-            ValueFromPipeline = $true,
-            ValueFromPipelineByPropertyName = $true
-        )]
-        [String[]]
-        $SubscriptionId = $null,
-
-        [Parameter()]
-        [String[]]
-        $EventSource = $null,
-
         [Parameter()]
         [PSCredential]
         $Credential = [PSCredential]::Empty
     )
 
-    $subscriptionRunTimeStatus = Invoke-Command -ComputerName $Name -ScriptBlock { wecutil.exe get-subscriptionruntimestatus "$($args[0])" "$($args[1])" } -ArgumentList $SubscriptionId, $EventSource -Credential $Credential
+    $scriptBlock = [ScriptBlock]{
+        $wecsvc = Get-Service -Name Wecsvc
+        if (-not ( $wecsvc.Status -eq "Running" )) {
+            throw "Service not running."
+        }
+
+        $subscriptions = wecutil.exe enum-subscription
+
+        foreach ($arg in $args[0]) {
+            if ($arg -in $subscriptions) {
+                $output = wecutil.exe get-subscriptionruntimestatus "$arg" "$($args[1])"
+
+                Write-Output -InputObject $output
+            } else {
+                Write-Error "Subscription not found: '$arg'."
+                continue
+            }
+        }  
+    }
+
+    $subscriptionRunTimeStatus = Invoke-Command -ComputerName $Name -ScriptBlock $scriptBlock -ArgumentList $SubscriptionId, $EventSource -Credential $Credential
 
     $output = New-SubscriptionRuntimeStatus -StringArray $subscriptionRunTimeStatus
     $eventSourceOutput = New-SubscriptionRuntimeStatusEventSource -StringArray $subscriptionRunTimeStatus

@@ -17,8 +17,7 @@ class Subscription {
     [AllowedSourceNonDomainComputers[]]$AllowedSourceNonDomainComputers
     [String]$AllowedSourceDomainComputers
 
-
-    Subscription ([Object]$Object) {
+    Subscription ([Object]$Object, [String]$ComputerName) {
         $this.SubscriptionId = $Object.Subscription.SubscriptionId
         $this.SubscriptionType = $Object.Subscription.SubscriptionType
         $this.Description = $Object.Subscription.Description
@@ -26,7 +25,7 @@ class Subscription {
         $this.Uri = $Object.Subscription.Uri
         $this.ConfigurationMode = $Object.Subscription.ConfigurationMode
         $this.Delivery = $Object.Subscription.Delivery
-        $this.QueryList = $Object.Subscription.Query."#cdata-section"
+        $this.QueryList = $Object.Subscription.Query."#cdata-section".Trim()
         $this.ReadExistingEvents = $Object.Subscription.ReadExistingEvents
         $this.TransportName = $Object.Subscription.TransportName
         $this.ContentFormat = $Object.Subscription.ContentFormat
