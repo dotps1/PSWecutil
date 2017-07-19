@@ -21,19 +21,14 @@ List all subscriptions on a given server:
 ```
 PS C:\> Get-Subscription -ComputerName eventcollector.dotps1.github.io
 
-SubscriptionId                  : ForwardedAppLockerEvents
+SubscriptionId                  : ForwadedAppLockerEvents-Win10
 SubscriptionType                : SourceInitiated
 Description                     :
 Enabled                         : True
 Uri                             : http://schemas.microsoft.com/wbem/wsman/1/windows/EventLog
 ConfigurationMode               : Normal
 Delivery                        : Delivery
-QueryList                       : {<QueryList><Query Id="0" Path="Microsoft-Windows-AppLocker/EXE and DLL"><Select
-                                  Path="Microsoft-Windows-AppLocker/EXE and DLL">*[System[(Level=1  or Level=2 or Level=3)]]</Select><Select
-                                  Path="Microsoft-Windows-AppLocker/MSI and Script">*[System[(Level=1  or Level=2 or Level=3)]]</Select><Select
-                                  Path="Microsoft-Windows-AppLocker/Packaged app-Deployment">*[System[(Level=1  or Level=2 or
-                                  Level=3)]]</Select><Select Path="Microsoft-Windows-AppLocker/Packaged app-Execution">*[System[(Level=1  or Level=2
-                                  or Level=3)]]</Select></Query></QueryList>}
+Query                           : {Query, Query, Query, Query}
 ReadExistingEvents              : True
 TransportName                   : HTTP
 ContentFormat                   : RenderedText
@@ -45,6 +40,20 @@ AllowedSourceDomainComputers    : O:NSG:BAD:P(A;;GA;;;DC)S:
 ```
 
 ### Example 2
+Examine the queries in the subscription:
+
+```
+PS C:\> Get-Subscription -ComputerName eventcollector.dotps1.github.io | Select-Object -ExpandProperty Query
+
+Path                                                Text
+----                                                ----
+Microsoft-Windows-AppLocker/EXE and DLL             *[System[(Level=1  or Level=2 or Level=3)]]
+Microsoft-Windows-AppLocker/MSI and Script          *[System[(Level=1  or Level=2 or Level=3)]]
+Microsoft-Windows-AppLocker/Packaged app-Deployment *[System[(Level=1  or Level=2 or Level=3)]]
+Microsoft-Windows-AppLocker/Packaged app-Execution  *[System[(Level=1  or Level=2 or Level=3)]]
+```
+
+### Example 3
 List the Subscription RunTime Status for a given event source:
 
 ```

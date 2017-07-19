@@ -7,7 +7,7 @@ class Subscription {
     [Uri]$Uri
     [String]$ConfigurationMode
     [Delivery]$Delivery
-    [String[]]$QueryList
+    [Query[]]$Query
     [Bool]$ReadExistingEvents
     [String]$TransportName
     [String]$ContentFormat
@@ -17,7 +17,7 @@ class Subscription {
     [AllowedSourceNonDomainComputers[]]$AllowedSourceNonDomainComputers
     [String]$AllowedSourceDomainComputers
 
-    Subscription ([Object]$Object, [String]$ComputerName) {
+    Subscription ([Object]$Object) {
         $this.SubscriptionId = $Object.Subscription.SubscriptionId
         $this.SubscriptionType = $Object.Subscription.SubscriptionType
         $this.Description = $Object.Subscription.Description
@@ -25,7 +25,7 @@ class Subscription {
         $this.Uri = $Object.Subscription.Uri
         $this.ConfigurationMode = $Object.Subscription.ConfigurationMode
         $this.Delivery = $Object.Subscription.Delivery
-        $this.QueryList = $Object.Subscription.Query."#cdata-section".Trim()
+        $this.Query = ([Xml]$Object.Subscription.Query.'#cdata-section').QueryList.Query.Select
         $this.ReadExistingEvents = $Object.Subscription.ReadExistingEvents
         $this.TransportName = $Object.Subscription.TransportName
         $this.ContentFormat = $Object.Subscription.ContentFormat
@@ -47,6 +47,16 @@ class Delivery {
         $this.Mode = $Object.Mode
         $this.Batching = $Object.Batching
         $this.PushSettings = $Object.PushSettings
+    }
+}
+
+class Query {
+    [String]$Path
+    [String]$Text
+
+    Query ([Object]$Object) {
+        $this.Path = $Object.Path
+        $this.Text = $Object.'#text'
     }
 }
 
