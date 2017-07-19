@@ -18,15 +18,15 @@ function Remove-Subscription {
         $SubscriptionId,
 
         [Parameter()]
-        [PSCredential]
-        $Credential = [PSCredential]::Empty,
-
-        [Parameter()]
         [Alias(
             "ComputerName"
         )]
         [String]
-        $Name = $env:COMPUTERNAME
+        $Name = $env:COMPUTERNAME,
+
+        [Parameter()]
+        [PSCredential]
+        $Credential = [PSCredential]::Empty
     )
 
     $scriptBlock = [ScriptBlock]{
@@ -36,7 +36,7 @@ function Remove-Subscription {
         }
 
         $subscriptions = wecutil.exe enum-subscription
-        
+
         foreach ($arg in $args) {
             if ($arg -in $subscriptions) {
                 wecutil.exe delete-subscription "$arg"
