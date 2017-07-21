@@ -41,6 +41,10 @@ function New-SubscriptionRunTimeStatusEventSource {
         })
 
         $output += [PSCustomObject]$hashTable
+
+        $output.PSObject.TypeNames.Insert(
+            0, "PSWecutil.SubscriptionRunTimeStatusEventSource"
+        )
     }
     Write-Output -InputObject $output
 }

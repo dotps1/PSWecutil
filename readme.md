@@ -22,22 +22,12 @@ List all subscriptions on a given server:
 ```
 PS C:\> Get-Subscription -ComputerName eventcollector.dotps1.github.io
 
-SubscriptionId                  : ForwadedAppLockerEvents-Win10
-SubscriptionType                : SourceInitiated
-Description                     :
-Enabled                         : True
-Uri                             : http://schemas.microsoft.com/wbem/wsman/1/windows/EventLog
-ConfigurationMode               : Normal
-Delivery                        : Delivery
-Query                           : {Query, Query, Query, Query}
-ReadExistingEvents              : True
-TransportName                   : HTTP
-ContentFormat                   : RenderedText
-Locale                          : Locale
-LogFile                         : ForwardedEvents
-PublisherName                   : Microsoft-Windows-EventCollector
-AllowedSourceNonDomainComputers : {AllowedSourceNonDomainComputers}
-AllowedSourceDomainComputers    : O:NSG:BAD:P(A;;GA;;;DC)S:
+
+PSComputerName   : eventcollector.dotps1.github.io
+SubscriptionId   : ForwardedAppLockerEvents
+SubscriptionType : SourceInitiated
+Enabled          : True
+LogFile          : ForwardedEvents
 ```
 
 ### Example 2
@@ -45,6 +35,7 @@ Examine the queries in the subscription:
 
 ```
 PS C:\> Get-Subscription -ComputerName eventcollector.dotps1.github.io | Select-Object -ExpandProperty Query
+
 
 Path                                                Text
 ----                                                ----
@@ -61,7 +52,9 @@ List the Subscription RunTime Status for a given event source:
 PS C:> Get-SubscriptionRunTimeStatus -ComputerName eventcollector.dotps1.github.io -SubscriptionId AppLockerEvents -EventSource workstation.dotps1.github.io
 
 
-Subscription            LastError RunTimeStatus EventSources                                                                                   
-------------            --------- ------------- ------------                                                                                   
-ForwadedAppLockerEvents 0         Active        {@{LastError=0; RunTimeStatus=Active; EventSource=workstation.dotps1.github.io; LastHeartbeat...
+Subscription   : ForwardedAppLockerEvents
+LastError      : 0
+RunTimeStatus  : Active
+EventSources   : {@{LastError=0; RunTimeStatus=Active; EventSource=workstation.dotps1.github.io; LastHeartbeatTime=2017-07-21T11:27:56.745}}
+PSComputerName : eventcollector.dotps1.github.io
 ```

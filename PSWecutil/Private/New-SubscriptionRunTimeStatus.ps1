@@ -28,5 +28,9 @@ function New-SubscriptionRunTimeStatus {
 
     $output = [PSCustomObject]$hashTable
 
+    $output.PSObject.TypeNames.Insert(
+        0, "PSWecutil.SubscriptionRunTimeStatus"
+    )
+
     Write-Output -InputObject $output
 }

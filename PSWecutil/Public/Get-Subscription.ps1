@@ -14,6 +14,10 @@ function Get-Subscription {
         $SubscriptionId = $null,
 
         [Parameter()]
+        [Switch]
+        $AsXml,
+
+        [Parameter()]
         [Alias(
             "ComputerName"
         )]
@@ -57,8 +61,18 @@ function Get-Subscription {
 
     foreach ($subscription in $subscriptions) {
         if ($null -ne $subscription) {
-            $output = [Subscription]$subscription
+            if ($AsXml.IsPresent) {
+                $output = $subscription.InnerXml
+            } else {
+                $output = [Subscription]$subscription
 
+                $output.PSObject.TypeNames.Insert(
+                    0, "PSWecutil.Subscription"
+                )
+            }
+
+            Add-Member -InputObject $output -NotePropertyName PSComputerName -NotePropertyValue $Name
+            
             Write-Output -InputObject $output
         }
     }

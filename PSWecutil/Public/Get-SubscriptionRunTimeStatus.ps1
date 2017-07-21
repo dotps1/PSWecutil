@@ -61,5 +61,7 @@ function Get-SubscriptionRunTimeStatus {
         $output.EventSources = $eventSourceOutput
     }
 
+    Add-Member -InputObject $output -NotePropertyName PSComputerName -NotePropertyValue $Name
+
     Write-Output -InputObject $output
 }
