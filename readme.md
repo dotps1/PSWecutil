@@ -49,7 +49,7 @@ Microsoft-Windows-AppLocker/Packaged app-Execution  *[System[(Level=1  or Level=
 List the Subscription RunTime Status for a given event source:
 
 ```
-PS C:> Get-SubscriptionRunTimeStatus -ComputerName eventcollector.dotps1.github.io -SubscriptionId AppLockerEvents -EventSource workstation.dotps1.github.io
+PS C:> Get-SubscriptionRunTimeStatus -ComputerName eventcollector.dotps1.github.io -SubscriptionId ForwardedAppLockerEvents -EventSource workstation.dotps1.github.io
 
 
 Subscription   : ForwardedAppLockerEvents

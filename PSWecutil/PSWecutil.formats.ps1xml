@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Configuration>
+    <ViewDefinitions>
+
+        <View>
+            <Name>Default</Name>
+            <ViewSelectedBy>
+                <TypeName>PSWecutil.Subscription</TypeName>
+            </ViewSelectedBy>
+            <ListControl>
+                <ListEntries>
+                    <ListEntry>
+                        <ListItems>
+                            <ListItem>
+                                <PropertyName>PSComputerName</PropertyName>
+                            </ListItem>
+                            <ListItem>
+                                <PropertyName>SubscriptionId</PropertyName>
+                            </ListItem>
+                            <ListItem>
+                                <PropertyName>SubscriptionType</PropertyName>
+                            </ListItem>
+                            <ListItem>
+                                <PropertyName>Enabled</PropertyName>
+                            </ListItem>
+                            <ListItem>
+                                <PropertyName>LogFile</PropertyName>
+                            </ListItem>
+                        </ListItems>
+                    </ListEntry>
+                </ListEntries>
+            </ListControl>
+        </View>
+
+    </ViewDefinitions>
+</Configuration>
