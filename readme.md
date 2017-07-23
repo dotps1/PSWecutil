@@ -8,10 +8,11 @@ GitHub:\PSWecutil> Get-Command -Module PSWecutil | Sort-Object Name
 
 CommandType     Name                                               Version    Source
 -----------     ----                                               -------    ------
-Function        Get-Subscription                                   0.0.0.3    PSWecutil
-Function        Get-SubscriptionRunTimeStatus                      0.0.0.3    PSWecutil
-Function        Invoke-WindowsEventCollectorQuickConfig            0.0.0.3    PSWecutil
-Function        Remove-Subscription                                0.0.0.3    PSWecutil
+Function        Get-Subscription                                   0.0.0.4    PSWecutil
+Function        Get-SubscriptionRunTimeStatus                      0.0.0.4    PSWecutil
+Function        Invoke-WindowsEventCollectorQuickConfig            0.0.0.4    PSWecutil
+Function        Remove-Subscription                                0.0.0.4    PSWecutil
+Function        Restart-Subscription                               0.0.0.4    PSWecutil
 ```
 
 ## Examples
