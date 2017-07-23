@@ -1,5 +1,44 @@
 # PowerShell wrapper for Wecutil.exe
-This is a PowerShell project to wrapper the wecutil.exe with powershell cmdlets.  Still has a ways to go, but here is a start.  Feel free to contribute.
+This is a PowerShell project to wrapper the wecutil.exe with powershell cmdlets.  Replacing the following:
+
+```
+Windows Event Collector Utility
+
+Enables you to create and manage subscriptions to events forwarded from remote
+event sources that support WS-Management protocol.
+
+Usage:
+
+You can use either the short (i.e. es, /f) or long (i.e. enum-subscription, /format)
+version of the command and option names. Commands, options and option values are
+case-insensitive.
+
+(ALL UPPER-CASE = VARIABLE)
+
+wecutil COMMAND [ARGUMENT [ARGUMENT] ...] [/OPTION:VALUE [/OPTION:VALUE] ...]
+
+Commands:
+
+es (enum-subscription)               List existent subscriptions.
+gs (get-subscription)                Get subscription configuration.
+gr (get-subscriptionruntimestatus)   Get subscription runtime status.
+ss (set-subscription)                Set subscription configuration.
+cs (create-subscription)             Create new subscription.
+ds (delete-subscription)             Delete subscription.
+rs (retry-subscription)              Retry subscription.
+qc (quick-config)                    Configure Windows Event Collector service.
+
+Common options:
+
+/h|? (help)
+Get general help for the wecutil program.
+
+wecutil { -help | -h | -? }
+
+For arguments and options, see usage of specific commands:
+
+wecutil COMMAND -?
+```
 
 ## Current functions
 
