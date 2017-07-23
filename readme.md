@@ -1,5 +1,5 @@
 # PowerShell wrapper for Wecutil.exe
-This is a PowerShell project to wrapper the wecutil.exe with powershell cmdlets.  Replacing the following:
+This is a PowerShell project to wrapper the wecutil.exe with powershell cmdlets and replace the following:
 
 ```
 Windows Event Collector Utility
