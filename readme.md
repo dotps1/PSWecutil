@@ -2,43 +2,18 @@
 This is a PowerShell project to wrapper the wecutil.exe with powershell cmdlets and replace the following:
 
 ```
-Windows Event Collector Utility
-
-Enables you to create and manage subscriptions to events forwarded from remote
-event sources that support WS-Management protocol.
-
-Usage:
-
-You can use either the short (i.e. es, /f) or long (i.e. enum-subscription, /format)
-version of the command and option names. Commands, options and option values are
-case-insensitive.
-
-(ALL UPPER-CASE = VARIABLE)
-
-wecutil COMMAND [ARGUMENT [ARGUMENT] ...] [/OPTION:VALUE [/OPTION:VALUE] ...]
-
-Commands:
-
-es (enum-subscription)               List existent subscriptions.
-gs (get-subscription)                Get subscription configuration.
-gr (get-subscriptionruntimestatus)   Get subscription runtime status.
-ss (set-subscription)                Set subscription configuration.
-cs (create-subscription)             Create new subscription.
-ds (delete-subscription)             Delete subscription.
-rs (retry-subscription)              Retry subscription.
-qc (quick-config)                    Configure Windows Event Collector service.
-
-Common options:
-
-/h|? (help)
-Get general help for the wecutil program.
-
-wecutil { -help | -h | -? }
-
-For arguments and options, see usage of specific commands:
-
-wecutil COMMAND -?
+wecutil es => Get-Subscription
+wecutil gs => Get-Subscription
+wecutil gr => Get-SubscriptionRunTimeStatus
+wecutil ss => Set-Subscription
+wecutil cs => New-Subscription
+wecutil ds => Remove-Subscription
+wecutil rs => Restart-Subscription
+wecutil qc => Invoke-WindowsEventCollectorQuickConfiguration
 ```
+
+This module will output PSCustomObjects or custom class objects so the input/output will be easier to work with, especially the New and Set subscription functions.
+Rather then working with string parsing and/or xml.
 
 ## Current functions
 
@@ -49,7 +24,7 @@ CommandType     Name                                               Version    So
 -----------     ----                                               -------    ------
 Function        Get-Subscription                                   0.0.0.4    PSWecutil
 Function        Get-SubscriptionRunTimeStatus                      0.0.0.4    PSWecutil
-Function        Invoke-WindowsEventCollectorQuickConfig            0.0.0.4    PSWecutil
+Function        Invoke-WindowsEventCollectorQuickConfiguration     0.0.0.4    PSWecutil
 Function        Remove-Subscription                                0.0.0.4    PSWecutil
 Function        Restart-Subscription                               0.0.0.4    PSWecutil
 ```

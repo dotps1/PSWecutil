@@ -62,7 +62,7 @@ function Get-Subscription {
     foreach ($subscription in $subscriptions) {
         if ($null -ne $subscription) {
             if ($AsXml.IsPresent) {
-                $output = $subscription.InnerXml
+                $output = Format-Xml -Xml $subscription.InnerXml
             } else {
                 $output = [Subscription]$subscription
 
