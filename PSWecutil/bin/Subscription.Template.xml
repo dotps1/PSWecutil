@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Subscription xmlns="http://schemas.microsoft.com/2006/03/windows/events/subscription">
+    <SubscriptionId></SubscriptionId>
+    <SubscriptionType></SubscriptionType>
+    <Description></Description>
+    <Enabled></Enabled>
+    <Uri>http://schemas.microsoft.com/wbem/wsman/1/windows/EventLog</Uri>
+    <ConfigurationMode>Custom</ConfigurationMode>
+    <Delivery Mode="">
+        <Batching>
+            <MaxItems></MaxItems>
+            <MaxLatencyTime></MaxLatencyTime>
+        </Batching>
+        <PushSettings>
+            <Heartbeat Interval="" />
+        </PushSettings>
+    </Delivery>
+    <Query></Query>
+    <ReadExistingEvents></ReadExistingEvents>
+    <TransportName></TransportName>
+    <TransportPort></TransportPort>
+    <ContentFormat></ContentFormat>
+    <Locale Language="" />
+    <LogFile></LogFile>
+    <PublisherName>Microsoft-Windows-EventCollector</PublisherName>
+</Subscription>
